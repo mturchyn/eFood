@@ -23,9 +23,6 @@ import org.javalite.activeweb.controller_filters.TimingFilter;
 import app.controllers.BooksController;
 
 
-/**
- * @author Igor Polevoy
- */
 public class AppControllerConfig extends AbstractControllerConfig {
 
     public void init(AppContext context) {

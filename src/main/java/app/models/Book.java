@@ -18,9 +18,6 @@ package app.models;
 
 import org.javalite.activejdbc.Model;
 
-/**
- * @author Igor Polevoy
- */
 public class Book extends Model {
     static {
         validatePresenceOf("title", "isbn");

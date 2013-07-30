@@ -1,71 +1,52 @@
-@charset "UTF-8";
-/* CSS Document */
+/* Sticky footer styles
+-------------------------------------------------- */
 
-*{
-	margin:0;
-	padding:0;
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
 }
 
-html, body{
-	background:white;
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 0 0 60px;
 }
 
-a{
-	text-decoration:none;
-	outline:none;
+/* Set the fixed height of the footer here */
+#footer {
+    height: 60px;
+    background-color: #f5f5f5;
 }
 
-a:hover{
-	text-decoration:underline;
-}
-
-p{
-	margin:10px 0;
-	line-height:16px;
-}
-
-
-.header{
-    background-color:#fafad2;
-    padding:20px;
-}
-
-.main{
-    padding:20px
-}
-
-.content{
-    padding:20px;
-}
-
-.error{
-    color:red;
-}
-
-.error_message{
-    background-color:#ffb6c1;
-
-    margin-top:10px;
-    margin-bottom:10px;
-    height:0;
-}
-
-.message{
-    background-color:#7fffd4;
-    
-    margin-top:10px;
-    margin-bottom:10px;
-}
-
-.footer{
-    background-color:#fafad2;
-    padding:20px;
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 
 
-table tr td{
-    background-color:#dcdcdc;
-    padding:10px;
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+#wrap > .container {
+    padding: 60px 15px 0;
+}
+.container .credit {
+    margin: 20px 0;
 }
 
+code {
+    font-size: 80%;
+}

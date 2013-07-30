@@ -21,10 +21,7 @@ import org.javalite.activeweb.annotations.DELETE;
 import org.javalite.activeweb.annotations.POST;
 import app.models.Book;
 
-/**
- * @author Igor Polevoy
- */
-public class BooksController extends AppController {                
+public class BooksController extends AppController {
 
     public void index(){
         view("books", Book.findAll());

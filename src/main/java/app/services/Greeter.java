@@ -16,9 +16,6 @@ limitations under the License.
 
 package app.services;
 
-/**
- * @author Igor Polevoy
- */
 public interface Greeter {
 
     String greet();

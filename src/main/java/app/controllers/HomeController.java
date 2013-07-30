@@ -18,9 +18,6 @@ package app.controllers;
 
 import org.javalite.activeweb.AppController;
 
-/**
- * @author Igor Polevoy
- */
 public class HomeController extends AppController {
     public void index(){}
 }

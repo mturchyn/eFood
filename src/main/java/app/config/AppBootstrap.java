@@ -21,9 +21,6 @@ import app.services.GreeterModule;
 import com.google.inject.Guice;
 import org.javalite.activeweb.Configuration;
 
-/**
- * @author Igor Polevoy
- */
 public class AppBootstrap extends Bootstrap {
     public void init(AppContext context) {        
         setInjector(Guice.createInjector(new GreeterModule()));

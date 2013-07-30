@@ -20,10 +20,6 @@ import org.javalite.activeweb.AppController;
 import app.services.Greeter;
 import com.google.inject.Inject;
 
-/**
- * @author Igor Polevoy
- */
-
 public class GreetingController  extends AppController {
 
     @Inject

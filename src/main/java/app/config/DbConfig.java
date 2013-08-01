@@ -22,9 +22,9 @@ public class DbConfig extends AbstractDBConfig {
 
     public void init(AppContext context) {
 
-        environment("development").jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/efood", "root", "root");
+        environment("development").jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/efood", "root", "");
         
-        environment("development").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/efood", "root", "root");
+        environment("development").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/efood", "root", "");
 
         environment("production").jndi("jdbc/simple_production");        
     }

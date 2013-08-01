@@ -12,7 +12,6 @@
     <title>ActiveWeb - <@yield to="title"/></title>
 </head>
 <body>
-      <div>Мы здесь</div>
 <div id="wrap">
 <#include "header.ftl" >
     <div class="container">

@@ -16,6 +16,7 @@ limitations under the License.
 package app.config;
 
 
+import app.controllers.CategoryController;
 import org.javalite.activeweb.AbstractControllerConfig;
 import org.javalite.activeweb.AppContext;
 import org.javalite.activeweb.controller_filters.DBConnectionFilter;
@@ -28,5 +29,6 @@ public class AppControllerConfig extends AbstractControllerConfig {
     public void init(AppContext context) {
         addGlobalFilters(new TimingFilter());
         add(new DBConnectionFilter()).to(BooksController.class);
+        add(new DBConnectionFilter()).to(CategoryController.class);
     }
 }

@@ -24,3 +24,4 @@ public class Book extends Model {
         validatePresenceOf("author").message("Author must be provided");
     }
 }
+

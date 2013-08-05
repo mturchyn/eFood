@@ -8,12 +8,16 @@
 
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
+    <http pattern="/html/**" security="none" />
 
     <http auto-config="true">
         <intercept-url pattern="/books/*" access="ROLE_USER" />
         <intercept-url pattern="/home*" access="ROLE_USER" />
         <intercept-url pattern="/category/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/html/login.html" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <form-login login-page='/html/login.html'/>
     </http>
+
 
     <authentication-manager>
         <authentication-provider>

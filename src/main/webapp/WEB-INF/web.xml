@@ -28,7 +28,7 @@
         <filter-name>dispatcher</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-     <!--Spring Security-->
+    <!--Spring Security-->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -49,8 +49,12 @@
         </param-value>
     </context-param>
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
     <!--<welcome-file-list>-->
-        <!--<welcome-file>index.jsp</welcome-file>-->
+    <!--<welcome-file>index.jsp</welcome-file>-->
     <!--</welcome-file-list>-->
 
 </web-app>

@@ -2,17 +2,17 @@
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <!--<http pattern="/css/**" security="none" />-->
-    <!--<http pattern="/js/**" security="none" />-->
+    <http pattern="/css/**" security="none" />
+    <http pattern="/js/**" security="none" />
 
     <http auto-config="true">
-        <intercept-url pattern="book/**" access="ROLE_USER" />
-        <intercept-url pattern="home*" access="ROLE_USER" />
-        <intercept-url pattern="category/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/books/*" access="ROLE_USER" />
+        <intercept-url pattern="/home*" access="ROLE_USER" />
+        <intercept-url pattern="/category/**" access="ROLE_ADMIN" />
     </http>
 
     <authentication-manager>

@@ -1,4 +1,4 @@
-<@content for="title">Категории</@content>
+<@content for="title">Categories</@content>
 
 
 <div class="message"><@flash name="message"/></div>
@@ -6,8 +6,8 @@
 
 <table>
     <tr>
-        <td>Название</td>
-        <td>Стоимость</td>
+        <td>Name</td>
+        <td>Price</td>
         <td></td>
     </tr>
 <#list categories as category>
@@ -19,7 +19,7 @@
             ${category.price}
         </td>
         <td>
-            <@link_to action="edit" id=category.id>Редактировать</@link_to>
+            <@link_to action="edit" id=category.id>Edit</@link_to>
         </td>
 
     </tr>

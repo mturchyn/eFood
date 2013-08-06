@@ -1,19 +1,15 @@
 package app.controllers;
 
+import app.models.DishCategory;
+import app.models.User;
 import org.javalite.activeweb.AppController;
-import org.javalite.activeweb.annotations.GET;
-import org.javalite.activeweb.annotations.POST;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.WebAttributes;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,7 +23,6 @@ public class LoginController extends AppController {
     public final static String ROLE_USER = "ROLE_USER";
 
     public void index() {
-
         Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         if (authorities != null) {
             for (GrantedAuthority role : authorities) {

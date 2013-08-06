@@ -17,8 +17,13 @@ package app.config;
 
 import org.javalite.activeweb.AbstractDBConfig;
 import org.javalite.activeweb.AppContext;
+import org.springframework.context.annotation.Bean;
 
-public class DbConfig extends AbstractDBConfig {
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class DbConfig extends AbstractDBConfig{
 
     public void init(AppContext context) {
 

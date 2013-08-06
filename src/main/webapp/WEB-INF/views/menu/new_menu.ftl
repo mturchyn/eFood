@@ -21,7 +21,9 @@
             </#list>
         </div>
     </#list>
+    <p>Choise the monday</p>
     <div style="float: left">
+
         <input type="date" name="date" required="true">
     </div>
     <div style="float: left">

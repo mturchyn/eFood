@@ -6,24 +6,40 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <http pattern="/css/**" security="none" />
-    <http pattern="/js/**" security="none" />
-    <http pattern="/html/**" security="none" />
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/html/**" security="none"/>
+    <!--<http pattern="/html/**" security="none" />-->
 
     <http auto-config="true">
-        <intercept-url pattern="/books/*" access="ROLE_USER" />
-        <intercept-url pattern="/home*" access="ROLE_USER" />
-        <intercept-url pattern="/category/**" access="ROLE_ADMIN" />
-        <intercept-url pattern="/html/login.html" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <form-login login-page='/html/login.html'/>
+        <intercept-url pattern="/category/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/*" access="ROLE_USER,ROLE_ADMIN"/>
+        <form-login login-page="/login/" default-target-url="/login/"
+                    authentication-failure-url="/login/"/>
+        <logout logout-success-url="/login/"/>
     </http>
+
+    <!--<beans:bean id="userService" class="app.security.UserLoginService">-->
+    <!--<beans:property name="userDAO" ref="userDAO"></beans:property>-->
+    <!--</beans:bean>-->
 
 
     <authentication-manager>
         <authentication-provider>
+            <!--<jdbc-user-service data-source-ref="userService"-->
+
+            <!--users-by-username-query="-->
+            <!--select username,password, enabled-->
+            <!--from users where username=?"-->
+
+            <!--authorities-by-username-query="-->
+            <!--select u.username, ur.authority from users u, user_roles ur-->
+            <!--where u.user_id = ur.user_id and u.username =?  "-->
+
+            <!--/>-->
             <user-service>
-                <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
-                <user name="user" password="user" authorities="ROLE_USER" />
+                <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+                <user name="user" password="user" authorities="ROLE_USER"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>

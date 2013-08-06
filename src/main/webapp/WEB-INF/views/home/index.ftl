@@ -5,5 +5,6 @@
 <ul>
     <li><@link_to controller="books">Books CRUD example</@link_to></li>
     <li><@link_to controller="greeting">Dependency injection example</@link_to></li>
+    <a href="/efood/j_spring_security_logout" > Logout</a>
 </ul>
 

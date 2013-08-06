@@ -1,88 +1,31 @@
-<@content for="title">Создать меню</@content>
-
+<@content for="title">Create</@content>
 <span class="error_message"><@flash name="message"/></span>
-<h2>Создание нового меню "на недельку"</h2>
-
-
-<@form action="createMenu" method="post">
+<h2>Form for creating new menu</h2>
+<@form action="create" method="post">
 <div>
-    <div name="Monday">
-        Понедельник
-        <#list categories as categorie>
+    <p>Choise days, please:</p>
+    <#list listOfDays as day>
+        <div style="float: left; margin: 20px;">
+            <br>
+            <h2>${day}</h2>
+            <input type="checkbox" name="day" value="${day_index}">
+            <#list listOfCategories as dishCategory>
 
-            <p>${categorie}</p>
-            <select name="categorie">
-                <option value="${Menu.Monday.getDishByType(type)}"
-                        selected="true">${Menu.Monday.getDishByType(type).name}</option>
-                <#list dishesOfCategorie as dish>
-                    <option value="${dish}" >${dish.name}</option>
-                </#list>
-            </select>
-
-
-        </#list>
+                <p>${dishCategory.category}:</p>
+                <select name="${dishCategory.category}">
+                    <option value="..." selected="true">...</option>
+                    <#list dishCategory.listOfDishes as dish>
+                        <option name="${dish.id}" value="${dish.id}">${dish.name}</option>
+                    </#list>
+                </select>
+            </#list>
+        </div>
+    </#list>
+    <div style="float: left">
+        <input type="date" name="date" required="true">
     </div>
-    <!--    <div name="Tuesday">
-        Вторник
-        <#list types as type>
-            <p>${type}</p>
-            <select name="${type}">
-                <option value="${Week.Tuesday.getDishByType(type)}"
-                        selected="true">${Week.Tuesday.getDishByType(type).name}</option>
-                <#list dishesOfType as dish>
-                    <option value="${dish}" selected="${Week.Tuesday.getDishByType(type)}">${dish.name}</option>
-                </#list>
-            </select>
-        </#list>
+    <div style="float: left">
+        <input type="submit" value="create menu">
     </div>
-    <div name="Wednesday">
-        Среда
-        <#list types as type>
-            <p>${type}</p>
-
-            <select name="type">
-                <option value="${Week.Wednesday.getDishByType(type)}"
-                        selected="true">${Week.Wednesday.getDishByType(type).name}</option>
-                <#list dishesOfType as dish>
-                    <option value="${dish}">${dish.name}</option>
-                </#list>
-            </select>
-
-
-        </#list>
-    </div>
-    <div name="Thursday">
-        Четверг
-        <#list types as type>
-
-            <p>${type}</p>
-            <select name="${type}">
-                <option value="${Week.Thursday.getDishByType(type)}"
-                        selected="true">${Week.Thursday.getDishByType(type).name}</option>
-                <#list dishesOfType as dish>
-                    <option value="${dish}">${dish.name}</option>
-                </#list>
-            </select>
-
-
-        </#list>
-    </div>
-    <div name="Friday">
-        Пятница
-        <#list types as type>
-
-            <p>${type}</p>
-            <select name="${type}">
-                <option value="${Week.Friday.getDishByType(type)}"
-                        selected="true">${Week.Friday.getDishByType(type).name}</option>
-                <#list dishesOfType as dish>
-                    <option value="${dish}">${dish.name}</option>
-                </#list>
-            </select>
-
-
-        </#list>
-    </div>
-     -->
 </div>
 </@form>

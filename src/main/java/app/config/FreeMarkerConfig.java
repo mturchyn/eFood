@@ -18,10 +18,14 @@ package app.config;
 
 import org.javalite.activeweb.freemarker.AbstractFreeMarkerConfig;
 
+import java.util.Locale;
+
 public class FreeMarkerConfig extends org.javalite.activeweb.freemarker.AbstractFreeMarkerConfig {
     @Override
     public void init() {
         //this is to override a strange FreeMarker default processing of numbers 
         getConfiguration().setNumberFormat("0.##");
+        Locale locale = new Locale("ru");
+        getConfiguration().setEncoding(locale, "UTF-8");
     }
 }

@@ -1,15 +1,13 @@
 package app.models;
 
 import org.javalite.activejdbc.Model;
-import org.javalite.activejdbc.annotations.Table;
 
 /**
  * Created with IntelliJ IDEA.
  * User: test
- * Date: 01.08.13
- * Time: 16:38
+ * Date: 05.08.13
+ * Time: 5:15
  * To change this template use File | Settings | File Templates.
  */
-
-public class Dish extends Model {
+public class Menu extends Model {
 }

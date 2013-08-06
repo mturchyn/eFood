@@ -28,4 +28,6 @@ public class FreeMarkerConfig extends org.javalite.activeweb.freemarker.Abstract
         Locale locale = new Locale("ru");
         getConfiguration().setEncoding(locale, "UTF-8");
     }
+
+
 }

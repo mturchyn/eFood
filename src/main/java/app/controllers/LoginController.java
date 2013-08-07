@@ -24,14 +24,18 @@ public class LoginController extends AppController {
 
     public void index() {
         Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        if (authorities != null) {
+        if (!authorities.isEmpty()) {
             for (GrantedAuthority role : authorities) {
                 if (role.getAuthority().equals(ROLE_ADMIN)) {
-                    redirect(CategoryController.class);
+                    redirect(AdminController.class);
                 } else if (role.getAuthority().equals(ROLE_USER)) {
                     redirect(BooksController.class);
                 }
             }
         }
+    }
+
+    public void loginFailure(){
+        index();
     }
 }

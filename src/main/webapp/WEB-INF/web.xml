@@ -43,7 +43,7 @@
         </init-param>
         <init-param>
             <param-name>exclusions</param-name>
-            <param-value>css,images,js,html,ico,png</param-value>
+            <param-value>css,images,js,html,ico,png,qqq</param-value>
         </init-param>
         <init-param>
             <param-name>root_controller</param-name>

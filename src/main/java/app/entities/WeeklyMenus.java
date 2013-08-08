@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class WeeklyMenus {
     private List<Menu> listOfMenu = null;
-    private Date date;
+    private String mondayDate;
 
     public List<Menu> getListOfMenu() {
         return listOfMenu;
@@ -24,11 +24,12 @@ public class WeeklyMenus {
         this.listOfMenu = listOfMenu;
     }
 
-    public Date getDate() {
-        return date;
+
+    public String getMondayDate() {
+        return mondayDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setMondayDate(String mondayDate) {
+        this.mondayDate = mondayDate;
     }
 }

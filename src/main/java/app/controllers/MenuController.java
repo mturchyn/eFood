@@ -2,16 +2,19 @@ package app.controllers;
 
 import app.entities.Week;
 import app.entities.WeeklyMenus;
+import app.logic.DateUtils;
 import app.models.*;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.javalite.activejdbc.LazyList;
 import org.javalite.activeweb.AppController;
 import org.javalite.activeweb.annotations.POST;
 
-import javax.swing.text.html.HTMLDocument;
-import java.text.DateFormat;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,31 +24,34 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class MenuController extends AppController {
-    public void index() {
-        //List<Menu> listOfWeekMenu = Menu.where(Dish);
 
+    public void index() {
 
     }
 
-    public void allMenus() {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = GregorianCalendar.getInstance(new Locale("ru_RU"));
-        cal.setFirstDayOfWeek(Calendar.MONDAY);
-        cal.getTimeZone();
-        int i = cal.get(Calendar.DAY_OF_WEEK);
-        if (i != 1) {
-            i = i - 2;
-            cal.add(Calendar.DAY_OF_MONTH, -i);
+    public void getWeeklyMenuAsJson() {
+        if (xhr()) {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                String menuForWeekAsJson = mapper.writeValueAsString(getMenusForWeek());
+                respond(menuForWeekAsJson).contentType("application/json").status(200);
+            } catch (IOException e) {
+                // todo
+            }
         } else {
-            i = i - 6;
-            cal.add(Calendar.DAY_OF_MONTH, -i);
+            flash("error", "big Error");
         }
+    }
 
-        WeeklyMenus weeklyMenus = new WeeklyMenus();
+    private List<Menu> getMenusForWeek() {
+        Calendar cal = DateUtils.getPastMonday();
+        Date monday = cal.getTime();
+        cal.add(Calendar.DAY_OF_MONTH, 6);
+        Date sunday = cal.getTime();
+        return Menu.where("date >= ? and date <= ?", DateUtils.formatDate(monday), DateUtils.formatDate(sunday));
+    }
 
-
-        view("time1", cal.getTime().toString());
+    public void viewAllMenu() {
 
 
     }
@@ -98,7 +104,7 @@ public class MenuController extends AppController {
                     GregorianCalendar gregorianCalendar = new GregorianCalendar();
                     gregorianCalendar.setTime(menuDate);
                     Menu menu = new Menu();
-                    menu.set("date", gregorianCalendar.get(Calendar.YEAR) + "-" + (gregorianCalendar.get(Calendar.MONTH) +1)+ "-" + (gregorianCalendar.get(Calendar.DAY_OF_MONTH) + day));
+                    menu.set("date", gregorianCalendar.get(Calendar.YEAR) + "-" + (gregorianCalendar.get(Calendar.MONTH) + 1) + "-" + (gregorianCalendar.get(Calendar.DAY_OF_MONTH) + day));
                     menu.saveIt();
                     while (iterator.hasNext()) {
                         DishCategory dishCategory = iterator.next();
@@ -111,7 +117,7 @@ public class MenuController extends AppController {
                             }
                         } else {
                             String firstSideDish = params().get(categoryName)[day * 2];
-                            String secondSideDish = params().get(categoryName)[day * 2 - 1];
+                            String secondSideDish = params().get(categoryName)[day * 2 + 1];
                             if (!firstSideDish.equals(secondSideDish)) {
 
                                 if (!firstSideDish.equals("...")) {
@@ -124,8 +130,7 @@ public class MenuController extends AppController {
                                 } else {
 
                                 }
-                            }
-                            else{
+                            } else {
                                 if (!firstSideDish.equals("...")) {
                                     MenuHasDish.createIt("menu_id", menu.getId(), "dishes_id", Integer.parseInt(firstSideDish));
                                 } else {

@@ -1,10 +1,10 @@
 package app.models;
 
+import org.javalite.activejdbc.LazyList;
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.annotations.Many2Many;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.jar.Attributes;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,25 +13,15 @@ import java.util.HashSet;
  * Time: 5:15
  * To change this template use File | Settings | File Templates.
  */
+@Many2Many(other = Dish.class, join = "menu_has_dishes", sourceFKName = "menu_id", targetFKName = "dishes_id")
 public class Menu extends Model {
 
-    private HashMap<DishCategory,Dish> listOfDishes;
-    private Date dateOfMonday;
+    public String getJSON() {
 
-
-    public HashMap<DishCategory, Dish> getListOfDishes() {
-        return listOfDishes;
+        String listOfDishesJSON = this.getAll(Dish.class).toJson(true, "id", "name", "description", "dish_categories_id");
+        return ("{\"id\": \""+ this.get("id")+"\",\"date\": \""+ this.get("date")+"\",\"listOfDishesJSON\":" +listOfDishesJSON+"}");
     }
 
-    public void setListOfDishes(HashMap<DishCategory, Dish> listOfDishes) {
-        this.listOfDishes = listOfDishes;
-    }
 
-    public Date getDate() {
-        return dateOfMonday;
-    }
 
-    public void setDate(Date date) {
-        this.dateOfMonday = date;
-    }
 }

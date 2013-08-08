@@ -23,6 +23,7 @@ public class LoginController extends AppController {
     public final static String ROLE_USER = "ROLE_USER";
 
     public void index() {
+        render().noLayout();
         Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         if (!authorities.isEmpty()) {
             for (GrantedAuthority role : authorities) {

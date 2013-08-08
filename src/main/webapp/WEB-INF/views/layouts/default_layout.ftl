@@ -6,12 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${context_path}/css/main.css" rel="stylesheet">
     <link href="${context_path}/css/bootstrap.css" rel="stylesheet">
-    <#--<script type="text/javascript">-->
-        <#--$('#myCarousel').carousel({-->
-            <#--interval: false-->
-        <#--});-->
-    <#--</script>-->
-    <title>eFood - <@yield to="title"/></title>
+    <title><@yield to="title"/>-eFood</title>
 </head>
 <body>
 <div id="wrap">
@@ -23,9 +18,9 @@
 </div>
 
 <#include "footer.ftl" >
-<script src="${context_path}/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="${context_path}/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="${context_path}/js/bootstrap.js" type="text/javascript"></script>
 <script src="${context_path}/js/aw.js" type="text/javascript"></script>
-<script src="${context_path}/js/myjs.js" type="text/javascript"></script>
+<script src="${context_path}/js/my_script.js" type="text/javascript"></script>
 </body>
 </html>

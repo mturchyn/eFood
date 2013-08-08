@@ -13,34 +13,66 @@
 
     <http auto-config="true">
         <intercept-url pattern="/category/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/*" access="ROLE_USER,ROLE_ADMIN"/>
-        <form-login login-page="/login/" default-target-url="/login/"
-                    authentication-failure-url="/login/"/>
-        <logout logout-success-url="/login/"/>
+        <form-login login-page="/login/"  default-target-url="/login/"
+                    authentication-failure-url="/login/login_failure"/>
+        <logout logout-success-url="/login/" delete-cookies="remember-me"/>
+        <remember-me services-ref="rememberMeServices"/>
+
     </http>
 
-    <!--<beans:bean id="userService" class="app.security.UserLoginService">-->
-    <!--<beans:property name="userDAO" ref="userDAO"></beans:property>-->
-    <!--</beans:bean>-->
+    <!-- Remember-me configuration -->
+    <beans:bean id="rememberMeServices"
+                class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
 
+        <beans:constructor-arg value="myAppKey"/>
+        <beans:constructor-arg ref="userDetailsService"/>
+        <beans:constructor-arg ref="tokenRepository"/>
+        <beans:property name="cookieName" value="remember-me"/>
+        <beans:property name="tokenLength" value="32"/>
+        <beans:property name="parameter" value="remember-me-parameter"/>
+    </beans:bean>
+
+    <beans:bean id="tokenRepository"
+                class="org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl">
+    </beans:bean>
+
+    <beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <beans:property name="usersByUsernameQuery" value="select login,password,enabled
+            from users where login=?"/>
+        <beans:property name="authoritiesByUsernameQuery" value="select u.login, ur.authority from users u, user_roles ur
+            where u.id = ur.user_id and u.login =?"/>
+    </beans:bean>
+
+    <beans:bean id="dataSource"
+                class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <beans:property name="url" value="jdbc:mysql://localhost/efood"/>
+        <beans:property name="username" value="root"/>
+        <beans:property name="password" value=""/>
+    </beans:bean>
 
     <authentication-manager>
         <authentication-provider>
-            <!--<jdbc-user-service data-source-ref="userService"-->
 
-            <!--users-by-username-query="-->
-            <!--select username,password, enabled-->
-            <!--from users where username=?"-->
+            <!--<password-encoder hash="md5">-->
+            <!--<salt-source user-property="login"/>-->
+            <!--</password-encoder>-->
 
-            <!--authorities-by-username-query="-->
-            <!--select u.username, ur.authority from users u, user_roles ur-->
-            <!--where u.user_id = ur.user_id and u.username =?  "-->
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="
+            select login,password, enabled
+            from users where login=?"
 
-            <!--/>-->
-            <user-service>
-                <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-                <user name="user" password="user" authorities="ROLE_USER"/>
-            </user-service>
+                               authorities-by-username-query="
+            select u.login, ur.authority from users u, user_roles ur
+            where u.id = ur.user_id and u.login =?  "/>
+            <!--<user-service>-->
+            <!--<user name="admin" password="admin" authorities="ROLE_ADMIN"/>-->
+            <!--<user name="user" password="user" authorities="ROLE_USER"/>-->
+            <!--</user-service>-->
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

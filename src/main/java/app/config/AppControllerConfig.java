@@ -17,6 +17,7 @@ package app.config;
 
 
 import app.controllers.CategoryController;
+import app.controllers.LoginController;
 import app.controllers.MenuController;
 import org.javalite.activeweb.AbstractControllerConfig;
 import org.javalite.activeweb.AppContext;
@@ -32,5 +33,6 @@ public class AppControllerConfig extends AbstractControllerConfig {
         add(new DBConnectionFilter()).to(BooksController.class);
         add(new DBConnectionFilter()).to(CategoryController.class);
         add(new DBConnectionFilter()).to(MenuController.class);
+        add(new DBConnectionFilter()).to(LoginController.class);
     }
 }

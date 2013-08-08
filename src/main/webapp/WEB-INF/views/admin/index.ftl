@@ -1,3 +1,4 @@
+<@content for="title">Admin page</@content>
 admin page
 <br/>
 Hello, admin <strong>${name}! </strong>
@@ -9,5 +10,3 @@ Hello, admin <strong>${name}! </strong>
 <@link_to controller="menu" action="new_menu">new menu</@>
 <br/>
 <a href="/efood/j_spring_security_logout" > Logout</a>
-                                  qdwqdq
-<@link_to controller="tem" action="ror403">403</@>

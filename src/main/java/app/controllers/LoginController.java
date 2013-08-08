@@ -30,7 +30,7 @@ public class LoginController extends AppController {
                 if (role.getAuthority().equals(ROLE_ADMIN)) {
                     redirect(AdminController.class);
                 } else if (role.getAuthority().equals(ROLE_USER)) {
-                    redirect(BooksController.class);
+                    redirect(UserController.class);
                 }
             }
         }

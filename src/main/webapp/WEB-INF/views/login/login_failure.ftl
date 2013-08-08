@@ -4,11 +4,11 @@
     <link rel="stylesheet" href="${context_path}/css/bootstrap_2.3.1/bootstrap.css">
     <link rel="stylesheet" href="${context_path}/css/bootstrap_2.3.1/bootstrap-responsive.css">
     <script src="${context_path}/js/bootstrap_2.3.1/bootstrap.js" type="text/javascript"></script>
-    <script type='text/javascript'>
-        function hide(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-    </script>
+    <#--<script type='text/javascript'>-->
+        <#--function hide(id) {-->
+            <#--document.getElementById(id).style.display = 'none';-->
+        <#--}-->
+    <#--</script>-->
     <title>Login failed</title>
 </head>
 <body>
@@ -31,7 +31,7 @@
         </div>
     </div>
 </div>
-
+<script src="${context_path}/js/myjs.js" type="text/javascript"></script>
 </body>
 
 </html>

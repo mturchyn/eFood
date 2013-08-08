@@ -15,15 +15,17 @@
         <intercept-url pattern="/category/**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/*" access="ROLE_USER,ROLE_ADMIN"/>
-        <form-login login-page="/login/" default-target-url="/login/"
+        <form-login login-page="/login/"  default-target-url="/login/"
                     authentication-failure-url="/login/login_failure"/>
-        <logout logout-success-url="/login/"/>
+        <logout logout-success-url="/login/" delete-cookies="remember-me"/>
         <remember-me services-ref="rememberMeServices"/>
+
     </http>
 
     <!-- Remember-me configuration -->
     <beans:bean id="rememberMeServices"
                 class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+
         <beans:constructor-arg value="myAppKey"/>
         <beans:constructor-arg ref="userDetailsService"/>
         <beans:constructor-arg ref="tokenRepository"/>

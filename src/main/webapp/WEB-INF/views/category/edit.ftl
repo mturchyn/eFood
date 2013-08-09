@@ -4,11 +4,11 @@
 <h2>Edit category</h2>
 
 <span class="error_message"><@flash name="message"/></span>
-<@form action="updateCategory" method="post" id=category.id>
+<@form action="update" method="post" id=category.id>
     <table style="margin:30px">
         <tr>
             <td>Name</td>
-            <td>${category.category}
+            <td><input type="text" name="category" value="${category.category}" required=""> *
             </td>
         </tr>
         <tr>

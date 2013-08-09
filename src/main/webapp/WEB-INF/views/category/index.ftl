@@ -3,7 +3,7 @@
 
 <div class="message"><@flash name="message"/></div>
 
-
+<@link_to action="new_category">Add new category</@link_to>
 <table>
     <tr>
         <td>Name</td>

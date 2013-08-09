@@ -28,7 +28,7 @@ public class MenuController extends AppController {
     public void index() {
 
     }
-
+        //wda
     public void getWeeklyMenuAsJson() {
         if (xhr()) {
             ObjectMapper mapper = new ObjectMapper();

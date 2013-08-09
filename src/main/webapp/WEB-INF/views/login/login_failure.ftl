@@ -31,7 +31,11 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <script src="${context_path}/js/myjs.js" type="text/javascript"></script>
+=======
+<script src="${context_path}/js/my_script.js" type="text/javascript"></script>
+>>>>>>> origin/master
 </body>
 
 </html>

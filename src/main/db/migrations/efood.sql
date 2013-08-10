@@ -40,14 +40,14 @@ COLLATE = utf8_unicode_ci;
 -- Table `efood`.`dishes`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `efood`.`dishes` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `description` VARCHAR(100) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL ,
-  `dish_category_id` INT(11) NOT NULL ,
-  PRIMARY KEY (`id`, `dish_category_id`) ,
-  INDEX `fk_dishes_dish_category1_idx` (`dish_category_id` ASC) ,
+  `dish_categories_id` INT(11) NOT NULL ,
+  PRIMARY KEY (`id`, `dish_categories_id`) ,
+  INDEX `fk_dishes_dish_category1_idx` (`dish_categories_id` ASC) ,
   CONSTRAINT `fk_dishes_dish_category1`
-    FOREIGN KEY (`dish_category_id` )
+    FOREIGN KEY (`dish_categories_id` )
     REFERENCES `efood`.`dish_categories` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -60,7 +60,7 @@ COLLATE = utf8_unicode_ci;
 -- Table `efood`.`menus`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `efood`.`menus` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `date` DATE NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
@@ -114,7 +114,7 @@ COLLATE = utf8_unicode_ci;
 -- Table `efood`.`orders`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `efood`.`orders` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `users_id` INT(11) NOT NULL ,
   `date` DATE NOT NULL ,
   PRIMARY KEY (`id`, `users_id`) ,

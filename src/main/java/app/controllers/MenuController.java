@@ -7,10 +7,12 @@ import app.models.*;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.javalite.activejdbc.LazyList;
 import org.javalite.activeweb.AppController;
+import org.javalite.activeweb.annotations.GET;
 import org.javalite.activeweb.annotations.POST;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,27 +30,32 @@ public class MenuController extends AppController {
     public void index() {
 
     }
-        //wda
-    public void getWeeklyMenuAsJson() {
-        if (xhr()) {
+
+
+    @GET
+    public void getWeeklyMenuToAjax() {
+        if (isXhr()) {
             ObjectMapper mapper = new ObjectMapper();
             try {
                 String menuForWeekAsJson = mapper.writeValueAsString(getMenusForWeek());
-                respond(menuForWeekAsJson).contentType("application/json").status(200);
+//                String menuForWeekAsJson = mapper.writeValueAsString("asdqdw");
+                respond(menuForWeekAsJson).contentType("json").status(200);
             } catch (IOException e) {
                 // todo
+                e.printStackTrace();
             }
         } else {
             flash("error", "big Error");
         }
     }
 
-    private List<Menu> getMenusForWeek() {
+    public List<Menu> getMenusForWeek() {
         Calendar cal = DateUtils.getPastMonday();
         Date monday = cal.getTime();
         cal.add(Calendar.DAY_OF_MONTH, 6);
         Date sunday = cal.getTime();
-        return Menu.where("date >= ? and date <= ?", DateUtils.formatDate(monday), DateUtils.formatDate(sunday));
+//        return Menu.where("date >= ? and date <= ?", DateUtils.formatDate(monday), DateUtils.formatDate(sunday));
+        return Menu.findAll();
     }
 
     public void viewAllMenu() {

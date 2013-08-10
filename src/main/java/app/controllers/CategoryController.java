@@ -4,6 +4,7 @@ import app.models.Book;
 import app.models.DishCategory;
 
 import org.javalite.activeweb.AppController;
+import org.javalite.activeweb.annotations.DELETE;
 import org.javalite.activeweb.annotations.POST;
 
 import java.util.HashMap;
@@ -25,6 +26,8 @@ public class CategoryController extends AppController {
             render("/system/404");
         }
     }
+
+
 
     @POST
     public void update() {
@@ -72,5 +75,13 @@ public class CategoryController extends AppController {
             e.printStackTrace();
             return false;
         }
+    }
+    @DELETE
+    public void delete(){
+        DishCategory category = (DishCategory)DishCategory.findById(getId());
+        String title = category.getString("category");
+        category.delete();
+        flash("message", "Category: '" + title + "' was deleted");
+        redirect(CategoryController.class);
     }
 }

@@ -17,7 +17,6 @@
                     authentication-failure-url="/login/login_failure"/>
         <logout logout-success-url="/login/"/>
         <remember-me />
-
     </http>
 
     <beans:bean id="dataSource"

@@ -18,10 +18,12 @@ package app.controllers;
 
 import org.javalite.activeweb.AppController;
 import org.javalite.activeweb.annotations.DELETE;
+import org.javalite.activeweb.annotations.GET;
 import org.javalite.activeweb.annotations.POST;
 import app.models.Book;
 
 public class BooksController extends AppController {
+
 
     public void index(){
         view("books", Book.findAll());

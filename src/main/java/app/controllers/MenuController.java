@@ -4,7 +4,10 @@ import app.entities.Week;
 import app.entities.WeeklyMenus;
 import app.logic.DateUtils;
 import app.models.*;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
 import org.javalite.activejdbc.LazyList;
 import org.javalite.activeweb.AppController;
 import org.javalite.activeweb.annotations.GET;
@@ -31,14 +34,13 @@ public class MenuController extends AppController {
 
     }
 
-
-    @GET
-    public void getWeeklyMenuToAjax() {
+    @POST
+    public void qqq(){
         if (isXhr()) {
-            ObjectMapper mapper = new ObjectMapper();
             try {
-                String menuForWeekAsJson = mapper.writeValueAsString(getMenusForWeek());
-//                String menuForWeekAsJson = mapper.writeValueAsString("asdqdw");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!"+param("date"));
+                ObjectWriter writer = new ObjectMapper().defaultPrettyPrintingWriter();
+                String menuForWeekAsJson=writer.writeValueAsString("good");
                 respond(menuForWeekAsJson).contentType("json").status(200);
             } catch (IOException e) {
                 // todo
@@ -49,12 +51,31 @@ public class MenuController extends AppController {
         }
     }
 
+
+    @GET
+    public void getWeeklyMenuToAjax() {
+
+        if (isXhr()) {
+            try {
+                ObjectWriter writer = new ObjectMapper().defaultPrettyPrintingWriter();
+                String menuForWeekAsJson=writer.writeValueAsString(getMenusForWeek());
+                respond(menuForWeekAsJson).contentType("json").status(200);
+            } catch (IOException e) {
+                // todo
+                e.printStackTrace();
+            }
+        } else {
+            flash("error", "big Error");
+        }
+    }
+
+
     public List<Menu> getMenusForWeek() {
         Calendar cal = DateUtils.getPastMonday();
         Date monday = cal.getTime();
         cal.add(Calendar.DAY_OF_MONTH, 6);
         Date sunday = cal.getTime();
-//        return Menu.where("date >= ? and date <= ?", DateUtils.formatDate(monday), DateUtils.formatDate(sunday));
+//        return Menu.where("date >= ? and date <= ?", DateUtils.formatDate(monday), DateUtils.formatDate(sunday));// todo delete comment
         return Menu.findAll();
     }
 

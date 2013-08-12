@@ -188,8 +188,7 @@
             </div>
         </div>
     </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev" onclick="changeWeek(-1)"></a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next" onclick="changeWeek(1)"></a>
+        <a id="go_left"  class="left carousel-control" href="#myCarousel" data-slide="prev" onclick="changeWeek(event,0)"></a>
+        <a id="go_right" class="right carousel-control" href="#myCarousel" data-slide="next" onclick="changeWeek(event,0)"></a>
 
 </div>
-<script src="${context_path}/js/user.js" type="text/javascript"></script>

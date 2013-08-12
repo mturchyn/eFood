@@ -16,14 +16,9 @@ import java.util.List;
 public class WeeklyMenus {
     private List<Menu> listOfMenu = null;
     private String mondayDate;
-                                 //todo delete
+
     public WeeklyMenus(){
 
-    }
-
-    public WeeklyMenus(ArrayList<Menu> listOfMenu, String mondayDate){
-        this.listOfMenu=listOfMenu;
-        this.mondayDate=mondayDate;
     }
 
     public List<Menu> getListOfMenu() {

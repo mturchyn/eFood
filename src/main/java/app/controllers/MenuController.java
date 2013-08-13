@@ -41,7 +41,7 @@ public class MenuController extends AppController {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!"+param("date"));
                 ObjectWriter writer = new ObjectMapper().defaultPrettyPrintingWriter();
                 String menuForWeekAsJson=writer.writeValueAsString("good");
-                respond(menuForWeekAsJson).contentType("json").status(200);
+                respond(menuForWeekAsJson).contentType("json;charset=utf-8").status(200);
             } catch (IOException e) {
                 // todo
                 e.printStackTrace();
@@ -59,7 +59,7 @@ public class MenuController extends AppController {
             try {
                 ObjectWriter writer = new ObjectMapper().defaultPrettyPrintingWriter();
                 String menuForWeekAsJson=writer.writeValueAsString(getMenusForWeek());
-                respond(menuForWeekAsJson).contentType("json").status(200);
+                respond(menuForWeekAsJson).contentType("json;charset=utf-8").status(200);
             } catch (IOException e) {
                 // todo
                 e.printStackTrace();
@@ -111,8 +111,7 @@ public class MenuController extends AppController {
     public void create() {
         String[] days = params().get("day");
         if (days != null) {
-            String allDaysFlashMessage;
-            int weekLength = days.length;
+            final int weekLength = days.length;
 
             List<DishCategory> dishCategories = DishCategory.findAll();
 
@@ -120,22 +119,21 @@ public class MenuController extends AppController {
             for (int dayCounter = 0; dayCounter < weekLength; dayCounter++) {
 
 
-                Iterator<DishCategory> iterator = dishCategories.iterator();
                 int day = Integer.valueOf(days[dayCounter]);
                 String DATE_FORMAT = "yyyy-MM-dd";
                 //;
                 SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
                 try {
-                    Date menuDate = sdf.parse(params1st()
-                            .get("date"));
+                    Date menuDate = sdf.parse(params1st().get("date"));
 
                     GregorianCalendar gregorianCalendar = new GregorianCalendar();
                     gregorianCalendar.setTime(menuDate);
                     Menu menu = new Menu();
                     menu.set("date", gregorianCalendar.get(Calendar.YEAR) + "-" + (gregorianCalendar.get(Calendar.MONTH) + 1) + "-" + (gregorianCalendar.get(Calendar.DAY_OF_MONTH) + day));
                     menu.saveIt();
-                    while (iterator.hasNext()) {
-                        DishCategory dishCategory = iterator.next();
+                    Iterator<DishCategory> dishCategoryIterator = dishCategories.iterator();
+                    while (dishCategoryIterator.hasNext()) {
+                        DishCategory dishCategory = dishCategoryIterator.next();
                         String categoryName = (String) dishCategory.get("category");
                         if (!categoryName.equals("side_dishes")) {
                             String s = params().get(categoryName)[day];
@@ -177,4 +175,23 @@ public class MenuController extends AppController {
             flash("message", "Something went wrong, please  fill out anything fields");
         }
     }
+
+    public static void main(String[] args) {
+        int a = a();
+        System.out.println(a);
+    }
+
+    private static int a() {
+        try {
+            System.out.println();
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            return 2;
+        } finally {
+            System.out.println("asd");
+            return 3;
+        }
+    }
+
 }

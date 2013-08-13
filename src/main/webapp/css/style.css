@@ -1,8 +1,9 @@
-#myCarousel{min-height: 800px}
+.container{width: 100%}
+/*#myCarousel{min-height: 600px}*/
 .carousel .item{padding-left:7%;}
 .carousel .item .day{float:left; margin: 20px 10px 10px 30px;}
 .carousel .item .btn-group{padding-bottom:10px}
-/*.carousel .item .low_block{padding-left:13%;}*/
+.carousel .item .low_block{padding-left:13%;}
 .date{font:bold italic 120% serif;margin-bottom:3px;}
 .category{ font: 12pt sans-serif; margin-bottom:3px}
 .menu_title{align:center}

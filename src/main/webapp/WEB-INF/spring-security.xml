@@ -10,6 +10,7 @@
     <http pattern="/js/**" security="none"/>
 
     <http auto-config="true">
+        <intercept-url pattern="/category/get_all_categories_ajax" access="ROLE_USER,ROLE_ADMIN"/>
         <intercept-url pattern="/category/**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/*" access="ROLE_USER,ROLE_ADMIN"/>

@@ -19,9 +19,9 @@ public class Menu extends Model {
     public String getJSON() {
 
         String listOfDishesJSON = this.getAll(Dish.class).toJson(true, "id", "name", "description", "dish_categories_id");
-        return ("{\"id\": \""+ this.get("id")+"\",\"date\": \""+ this.get("date")+"\",\"listOfDishesJSON\":" +listOfDishesJSON+"}");
+        return ("{\"id\": \""+ this.get("id")+"\",\"date\": \""+ this.get("date")+"\",\"listOfDishes\":" +listOfDishesJSON+"}");
+//        return listOfDishesJSON;
     }
-
 
 
 }

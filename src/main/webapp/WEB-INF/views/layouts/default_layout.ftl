@@ -27,6 +27,5 @@
 <script src="${context_path}/js/bootstrap_2.3.1/bootstrap.js" type="text/javascript"></script>
 <script src="${context_path}/js/aw.js" type="text/javascript"></script>
 <script src="${context_path}/js/my_script.js" type="text/javascript"></script>
-<script src="${context_path}/js/user_script.js" type="text/javascript"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@ package app.controllers;
 import org.javalite.activeweb.AppController;
 
 public class UserController extends AppController {
-    public void index(){
-//        render().noLayout();
+    public void index() {
+
     }
 }

@@ -3,18 +3,31 @@ package app.controllers;
 import app.models.Book;
 import app.models.DishCategory;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
 import org.javalite.activeweb.AppController;
 import org.javalite.activeweb.annotations.DELETE;
+import org.javalite.activeweb.annotations.GET;
 import org.javalite.activeweb.annotations.POST;
 
+import java.io.IOException;
 import java.util.HashMap;
+
+import static javax.security.auth.login.Configuration.getConfiguration;
 
 
 public class CategoryController extends AppController {
 
     public void index() {
-        DishCategory.findAll();
         view("categories", DishCategory.findAll());
+    }
+
+    @GET
+    public void getAllCategoriesAjax() {
+        if (isXhr()) {
+            String categoriesJson = DishCategory.findAll().toJson(true, "id", "category", "price");
+            respond(categoriesJson).contentType("json;charset=utf-8").status(200);
+        }
     }
 
     public void edit() {
@@ -26,7 +39,6 @@ public class CategoryController extends AppController {
             render("/system/404");
         }
     }
-
 
 
     @POST
@@ -76,9 +88,10 @@ public class CategoryController extends AppController {
             return false;
         }
     }
+
     @DELETE
-    public void delete(){
-        DishCategory category = (DishCategory)DishCategory.findById(getId());
+    public void delete() {
+        DishCategory category = (DishCategory) DishCategory.findById(getId());
         String title = category.getString("category");
         category.delete();
         flash("message", "Category: '" + title + "' was deleted");

@@ -20,7 +20,7 @@
         </td>
         <td>
             <@link_to action="edit" id=category.id>Edit</@link_to>
-            | <@link_to action="delete" method="delete" id=category.id>Delete</@link_to>
+            <@link_to action="delete" method="post" id=category.id>Delete</@link_to>
         </td>
 
     </tr>

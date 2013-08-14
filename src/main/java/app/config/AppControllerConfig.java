@@ -16,14 +16,11 @@ limitations under the License.
 package app.config;
 
 
-import app.controllers.CategoryController;
-import app.controllers.LoginController;
-import app.controllers.MenuController;
+import app.controllers.*;
 import org.javalite.activeweb.AbstractControllerConfig;
 import org.javalite.activeweb.AppContext;
 import org.javalite.activeweb.controller_filters.DBConnectionFilter;
 import org.javalite.activeweb.controller_filters.TimingFilter;
-import app.controllers.BooksController;
 
 
 public class AppControllerConfig extends AbstractControllerConfig {
@@ -34,5 +31,6 @@ public class AppControllerConfig extends AbstractControllerConfig {
         add(new DBConnectionFilter()).to(CategoryController.class);
         add(new DBConnectionFilter()).to(MenuController.class);
         add(new DBConnectionFilter()).to(LoginController.class);
+        add(new DBConnectionFilter()).to(DishesController.class);
     }
 }

@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.entities.Week;
 import app.entities.WeeklyMenus;
+import app.logic.CategoriesUtil;
 import app.logic.DateUtils;
 import app.models.*;
 import org.codehaus.jackson.JsonGenerationException;
@@ -79,33 +80,20 @@ public class MenuController extends AppController {
         return Menu.findAll();
     }
 
-    public void viewAllMenu() {
+    public void adminViewAllMenu() {
 
 
     }
 
     public void newMenu() {
-        List<DishCategory> l = DishCategory.findAll();
-        DishCategory dishCategory = DishCategory.findFirst("category=?", "side_dishes");
-        List<DishCategory> listOfCategories = new ArrayList<DishCategory>(l);
-        for (int t = 0; t < listOfCategories.size(); t++) {
-            if (listOfCategories.get(t).get("category").equals("side_dishes")) {
-                listOfCategories.add(t, dishCategory);
-                break;
-            }
-
-        }
-        Iterator<DishCategory> iterator = listOfCategories.iterator();
-        while (iterator.hasNext()) {
-            DishCategory dc = iterator.next();
-            List<Dish> listOfDishes = Dish.where("dish_categories_id = ?", dc.get("id"));
-            dc.setListOfDishes(listOfDishes);
-        }
+        List<DishCategory> listOfCategories = CategoriesUtil.getDishCategoriesWithDishesList();
         view("listOfCategories", listOfCategories);
         view("listOfDays", Week.values());
 
 
     }
+
+
 
     @POST
     public void create() {

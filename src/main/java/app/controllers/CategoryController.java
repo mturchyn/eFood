@@ -89,7 +89,7 @@ public class CategoryController extends AppController {
         }
     }
 
-    @DELETE
+    @POST
     public void delete() {
         DishCategory category = (DishCategory) DishCategory.findById(getId());
         String title = category.getString("category");

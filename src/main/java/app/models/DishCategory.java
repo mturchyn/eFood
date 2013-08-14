@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class DishCategory extends Model {
-    private List<Dish> listOfDishes=null;
+    public   List<Dish> listOfDishes=null;
     public void setListOfDishes(List<Dish> list){
         this.listOfDishes = list;
     }

@@ -63,4 +63,6 @@
     <a id="go_left" class="left carousel-control" href="#myCarousel" data-slide="prev" onclick="changeWeek(event,0)"></a>
     <a id="go_right" class="right carousel-control" href="#myCarousel" data-slide="next" onclick="changeWeek(event,0)"></a>
 </div>
+<@link_to controller="menu" ction="new_menu">Edit menu</@>
+<br/>
 <script src="${context_path}/js/user_script.js" type="text/javascript"></script>
